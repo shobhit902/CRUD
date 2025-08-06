@@ -1,12 +1,13 @@
 import mongoose, { connect } from "mongoose";
-import dotnev, { configDotenv } from "dotenv";
+import dotenv, { configDotenv } from "dotenv";
 
-dotnev.config();
+dotenv.config();
 
 const connectDb = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    const state = mongoose.connection.readyState;
+
+    const state = await mongoose.connection.readyState;
     if (state === 1) {
       console.log(`Database connected`);
     } else {
