@@ -21,8 +21,16 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      default: "user", // other possible: "admin", "author"
+      enum: ["reader", "author", "admin"], // added roles
+      default: "reader",
       index: true,
+    },
+
+    // bio
+
+    bio: {
+      type: String,
+      default: "",
     },
     avatar: {
       type: String, // cloudinary
@@ -30,7 +38,6 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
-  
   }
 );
 
