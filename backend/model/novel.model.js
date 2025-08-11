@@ -1,34 +1,39 @@
 import mongoose, { Schema } from "mongoose";
+
 const novelSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
       unique: true,
       trim: true,
       index: true,
     },
-    genre: {
-      type: String,
-      trim: true,
-    },
-    novel_author: {
-      type: String,
-      unique: true,
+    authorId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
-      trim: true,
-      index: true,
     },
-   
+    description: {
+      type: String,
+      trim: true,
+    },
+    coverImage: {
+      type: String,
+      trim: true,
+    },
+    tags: {
+      type: [String], 
+      default: [],
+    },
     status: {
-      type: Boolean,
+      type: String,
+      enum: ["ongoing", "completed"],
+      default: "ongoing",
     },
-    year: {
-      type: Number,
-    }
   },
   {
-    timestamps: true,
+    timestamps: true, // createdAt & updatedAt
   }
 );
 
