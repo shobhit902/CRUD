@@ -2,6 +2,9 @@ import mongoose, { Schema } from "mongoose";
 
 const novelSchema = new Schema(
   {
+    author: {
+      type: String,
+    },
     title: {
       type: String,
       required: true,
@@ -23,13 +26,17 @@ const novelSchema = new Schema(
       trim: true,
     },
     tags: {
-      type: [String], 
+      type: [String],
       default: [],
     },
     status: {
       type: String,
       enum: ["ongoing", "completed"],
       default: "ongoing",
+    },
+    genre: {
+      type: [String],
+      default: [],
     },
   },
   {
